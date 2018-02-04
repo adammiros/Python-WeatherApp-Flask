@@ -60,4 +60,4 @@ def getWeather():
     lowTemp = getLowTemp()
     highTemp = str(highTemp)
     lowTemp = str(lowTemp)
-    return("The weather in %s is %s degrees fahrenheit \n %s \n Also, today, there will be a high of %s degrees and a low of %s degrees. " % (cityName, temp, extraConditions, highTemp, lowTemp))
+    return("The weather in %s is %s degrees fahrenheit \n %s \n. Also, today, there will be a high of %s degrees and a low of %s degrees. " % (cityName, temp, extraConditions, highTemp, lowTemp))
