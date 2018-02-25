@@ -1,7 +1,6 @@
 import json
 import requests
 
-
 def setupCity(city):
     global data
     global cityName
@@ -11,6 +10,8 @@ def setupCity(city):
     response.raise_for_status()
     weatherData = json.loads(response.text)
     data = weatherData
+    return data
+
 
 
 def temperature():
@@ -18,29 +19,55 @@ def temperature():
         return temp
 
 
-def extraTypeOfConditions():
+def TypeOfWeatherAndImages():
         typeOfCondition = data["weather"][0]["main"]
+        global imageData
+        imageData = []
+
 
         if typeOfCondition == "Clear":
+            imageData.append("clear")
             return "It's clear"
 
+
         elif typeOfCondition == "Clouds":
+            imageData.append("cloudy")
             return "There are some scattered clouds"
 
+
         elif typeOfCondition == "Snow":
+            imageData.append("snowy")
             return "It's snowy"
 
+
         elif typeOfCondition == "Sun":
+            imageData.append("sunny")
             return "It's sunny"
 
+
         elif typeOfCondition == "light snow":
+            imageData.append("snowy")
             return "Its snowy"
 
+
         elif typeOfCondition == "Haze":
+            imageData.append("cloudy")
             return "Its hazy"
+
+
+        elif typeOfCondition == "Light Rain":
+            imageData.append("cloudy")
+            return "It's raining lightly"
+
+
+        elif typeOfCondition == "Mist":
+            imageData.append("cloudy")
+            return "It's misty"
+
 
         else:
             return "ERROR Getting Specific Type Of Weather!"
+
 
 
 def getHighTemp():
@@ -54,10 +81,11 @@ def getLowTemp():
 
 
 def getWeather():
-    extraConditions = extraTypeOfConditions()
+    extraConditions = TypeOfWeatherAndImages()
     temp = temperature()
     highTemp = getHighTemp()
     lowTemp = getLowTemp()
     highTemp = str(highTemp)
     lowTemp = str(lowTemp)
-    return("The weather in %s is %s degrees fahrenheit \n %s \n. Also, today, there will be a high of %s degrees and a low of %s degrees. " % (cityName, temp, extraConditions, highTemp, lowTemp))
+    response = ("The weather in %s is %s degrees fahrenheit. \n %s. Also, today, there will be a high of %s degrees and a low of %s degrees. " % (cityName, temp, extraConditions, highTemp, lowTemp))
+    return response

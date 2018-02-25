@@ -1,6 +1,21 @@
 {% extends "layout.html" %}
 
 {% block body %}
+<h3 style="text-align: center">
 {{weatherResponse}}
-<a class="btn btn-primary" href="/" role="button">Click me to go back home and enter another value!</a>
+</h3>
+<br>
+
+<div style="text-align:center">
+<img src="/static/{{image}}Weather.png">
+</div>
+
+<br>
+<div style="text-align: center; font-family: 'Roboto', sans-serif">
+<a class="btn btn-primary " href="/" role="button">Click me to go back home and enter another value!</a>
+</div>
+
+
+
+
 {% endblock %}
