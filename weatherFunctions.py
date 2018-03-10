@@ -69,7 +69,6 @@ def TypeOfWeatherAndImages():
             return "ERROR Getting Specific Type Of Weather!"
 
 
-
 def getHighTemp():
         highTemp = data["main"]["temp_max"]
         return highTemp

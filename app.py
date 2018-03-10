@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request
-import weather
+import weatherFunctions
 
 app = Flask(__name__)
 
@@ -8,12 +8,13 @@ def index():
 
     if request.method == "POST":
         city = request.form["city"]
-        response = weather.runWeatherAppLogic(city)
-        imageData = weather.getImage()
-        return render_template("response.html", weatherResponse=response, image = imageData)
+        weatherFunctions.setupCity(city)
+        response = weatherFunctions.getWeather()
+        image = weatherFunctions.imageData[0]
+        return render_template("response.html", weatherResponse=response, image = image)
 
     return render_template("home.html")
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=True, host="159.65.230.87", port=80)
