@@ -20,7 +20,9 @@ def temperature():
 
 
 def TypeOfWeatherAndImages():
+        setupCity(city)
         typeOfCondition = data["weather"][0]["main"]
+        weatherSeverity = 0
         global imageData
         imageData = []
 
@@ -28,45 +30,79 @@ def TypeOfWeatherAndImages():
         if typeOfCondition == "Clear":
             imageData.append("clear")
             return "It's clear"
+            weatherSeverity = 0
+            determinSeverity()
 
 
         elif typeOfCondition == "Clouds":
             imageData.append("cloudy")
             return "There are some scattered clouds"
+            weatherSeverity = weatherSeverity = 1
+            determinSeverity()
 
 
         elif typeOfCondition == "Snow":
             imageData.append("snowy")
             return "It's snowy"
+            weatherSeverity = weatherSeverity = 5 
+            determinSeverity()
 
 
         elif typeOfCondition == "Sun":
             imageData.append("sunny")
             return "It's sunny"
+            weatherSeverity = 0
+            determinSeverity()
 
 
         elif typeOfCondition == "light snow":
             imageData.append("snowy")
             return "Its snowy"
+            weatherSeverity = weatherSeverity = 2
+            determinSeverity()
 
 
         elif typeOfCondition == "Haze":
             imageData.append("cloudy")
             return "Its hazy"
+            weatherSeverity = weatherSeverity = 1
+            determinSeverity()
 
 
         elif typeOfCondition == "Light Rain":
             imageData.append("cloudy")
             return "It's raining lightly"
+            weatherSeverity = weatherSeverity = 1
+            determinSeverity()
 
 
         elif typeOfCondition == "Mist":
             imageData.append("cloudy")
             return "It's misty"
+            weatherSeverity = weatherSeverity = 1
+            determinSeverity()
 
-
+        
         else:
             return "ERROR Getting Specific Type Of Weather!"
+
+
+def determinSeverity():
+    if weatherSeverity = 0:
+        return "It will be calm since weather severity is very low"
+
+    elif weatherSeverity = 1:
+        return "Weather severity is low. You should be fine"
+
+    elif weatherSeverity = 2:
+        return "Weather severity is picking up. You should have a little bit of caution."
+
+    elif weatherSeverity = 3:
+        return "Weather severity is at a medium level. Please be careful"
+        
+    elif weatherSeverity > 3: 
+        return "Ok now its dangerous please try to avoid the roads if possible!"
+
 
 
 def getHighTemp():
@@ -81,10 +117,17 @@ def getLowTemp():
 
 def getWeather():
     extraConditions = TypeOfWeatherAndImages()
-    temp = temperature()
-    highTemp = getHighTemp()
-    lowTemp = getLowTemp()
-    highTemp = str(highTemp)
-    lowTemp = str(lowTemp)
+    temperature = temperature()
+    highTemp = str(getHighTemp())
+    lowTemp = str(getlowTemp)
+
+    return extraConditions
+    return temperature
+    return highTemp
+    return lowTemp
+    
+
+def Return Response():
+    getWeather()
     response = ("The weather in %s is %s degrees fahrenheit. \n %s. Also, today, there will be a high of %s degrees and a low of %s degrees. " % (cityName, temp, extraConditions, highTemp, lowTemp))
     return response
